@@ -1,28 +1,24 @@
 # by Kami Bigdely
 # Consolidate duplicate conditional fragments
 
-def add(mix, something):
-    mix.append(something)
+def add(mix, *argv):
+    for item in argv:
+        mix.append(item)
     return mix
 
 
-def mixer_ice_with_cream():
-    print('mixed ice with cream.')
-    return ['ice', 'cream']
+def make_drink(drink, *argv):
+    mix = []
 
-
-def make_drink(drink, addons):
     if 'coffee' in drink:
-        mix = []
-        mix = add(mix, 'coffee')
-        mix = add(mix, addons)
-    if 'strawberry milkshake' in drink:
-        mix = []
-        mix = mixer_ice_with_cream()
-        mix = add(mix, 'strawberry')
-        mix = add(mix, addons)
+        add(mix, 'coffee')
+    elif 'strawberry milkshake' in drink:
+        add(mix, 'ice', 'cream', 'strawberry')
+
+    mix = add(mix, *argv)
+
     return mix
 
 
-final_drink = make_drink('strawberry milkshake', ['milk', 'sugar'])
+final_drink = make_drink('strawberry milkshake', 'milk', 'sugar')
 print(final_drink)
